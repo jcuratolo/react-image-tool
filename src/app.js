@@ -26,6 +26,7 @@ export default class App extends Component {
   render() {
     return (
       <div style={appStyle}>
+        <p>i am a derp</p>
         <Tools
           imgPosition={this.state.position}
           imgSrc={this.state.imgSrc} />

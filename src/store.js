@@ -11,7 +11,6 @@ const initialState = {
 
 const store = (state, action) => {
   state = state || initialState;
-  console.log(action);
   switch (action.type) {
     case at.UPDATE_POSITION:
       return Object.assign({}, state, {
