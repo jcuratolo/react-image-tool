@@ -1,21 +1,41 @@
 import React, { Component, PropTypes } from 'react';
+import Draggable from 'react-draggable';
+import store from './store.js';
 
-export default class TodoList extends Component {
+var canvasStyle = {
+  width: 640,
+  height: 480,
+  border: '1px solid green',
+  position: 'relative'
+};
+
+var squareStyle = {
+  height: '64px',
+  width: '64px',
+  backgroundColor: 'blue'
+};
+
+var square2Style = {
+  height: '64px',
+  width: '64px',
+  backgroundColor: 'red'
+};
+
+export default class Canvas extends Component {
+  handleStop(ev, position) {
+    store.dispatch({
+      type: 'UPDATE_POSITION',
+      position: position.position
+    })
+  }
+
   render() {
-    console.log('todo list rendering');
-    const { todos } = this.props;
-
     return (
-      <div>
-        <h1>todo list</h1>
-        <ul>
-          { todos.map(todo => <li key={ todo.id }>{ todo.text }</li>) }
-        </ul>
+      <div style={canvasStyle}>
+        <Draggable bounds="parent" onStop={this.handleStop.bind(this)}>
+          <div style={squareStyle}></div>
+        </Draggable>
       </div>
     )
   }
-};
-
-TodoList.propTypes = {
-  todos: PropTypes.array.isRequired
 };

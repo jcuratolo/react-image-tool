@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import store from './todoApp.js';
-import Header from './header.js';
-import Canvas from './Canvas.js';
-import Footer from './footer.js';
+import store from './store.js';
+import Tools from './tools.js';
+import Canvas from './canvas.js';
+
+var appStyle = {
+  width: '640px',
+  margin: '10px',
+  border: '1px solid red'
+};
 
 var appContext;
 
@@ -20,20 +25,12 @@ export default class App extends Component {
     this.setState(storeState);
   }
 
-  addTodo(inputValue) {
-    store.dispatch({
-        type: 'ADD_TODO',
-        text: inputValue
-      });
-  }
-
   render() {
     const { todos } = this.state;
     return (
-      <div>
-        <Header onAddTodo={ this.addTodo.bind(this) }/>
-        <Canvas todos={ todos }/>
-        <Footer />
+      <div style={appStyle}>
+        <Tools imagePosition={this.state.position} />
+        <Canvas />
       </div>
     );
   }
