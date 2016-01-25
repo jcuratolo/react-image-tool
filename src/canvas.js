@@ -5,21 +5,12 @@ import store from './store.js';
 var canvasStyle = {
   width: 640,
   height: 480,
-  border: '1px solid green',
   position: 'relative'
 };
 
-var squareStyle = {
-  height: '64px',
-  width: '64px',
-  backgroundColor: 'blue'
-};
-
-var square2Style = {
-  height: '64px',
-  width: '64px',
-  backgroundColor: 'red'
-};
+const buildSquareStyle = (styleObj, cssTransform) => {
+  return Object.assign({}, styleObj, cssTransform);
+}
 
 export default class Canvas extends Component {
   handleStop(ev, position) {
@@ -30,17 +21,18 @@ export default class Canvas extends Component {
   }
 
   render() {
-    const startPosition = {
-      x: this.props.imagePosition.left,
-      y: this.props.imagePosition.top
-    };
+    const squareStyleWithTransform = buildSquareStyle({
+      //transform: 'translate(0px,0px)'
+    });
+
     return (
       <div style={canvasStyle}>
         <Draggable
           bounds="parent"
-          start={startPosition}
           onStop={this.handleStop.bind(this)}>
-          <div style={squareStyle}></div>
+          <div style={{border: '1px solid red', display: 'inline-block'}}>
+            <img src={this.props.imgSrc} style={{height: '64px', width: '64px', pointerEvents: 'none'}}/>
+          </div>
         </Draggable>
       </div>
     )

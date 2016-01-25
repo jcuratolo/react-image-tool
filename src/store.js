@@ -1,26 +1,26 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  position:{
+  imgSrc: 'http://icons.iconarchive.com/icons/mazenl77/I-like-buttons-3a/512/Cute-Ball-Go-icon.png',
+  position: {
     left: 0,
     top: 0
   }
 };
 
-function todosApp(state, action) {
+const store = (state, action) => {
   state = state || initialState;
+  console.log(action);
   switch (action.type) {
     case 'UPDATE_POSITION':
-    console.log('updating position');
-      const nextState = Object.assign({}, state, {
+      return Object.assign({}, state, {
         position: action.position
       });
-      break;
+    case 'UNDO':
+      return Object.assign({}, stateHistory.pop());
     default:
       return state;
   }
-  console.log(nextState);
-  return nextState || state;
 }
 
-export default createStore(todosApp);
+export default createStore(store);
