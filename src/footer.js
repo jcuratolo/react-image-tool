@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-const Footer = ({ imgPosition }) => {
+const Footer = ({ imgPosition, imgSrc }) => {
   const { left, top } = imgPosition;
   return (
-    <div>
-      <h3 style={{float: 'left'}}>Left: {left}</h3>
-      <h3 style={{float: 'left', marginLeft: 10}}>Top: {top}</h3>
+    <div style={{borderTop: '1px solid black'}}>
+      <div style={{padding: 10}}>
+        <h3>Left: {left}px Top: {top}px</h3>
+        <h3>{imgSrc}</h3>
+      </div>
     </div>
   )
 };

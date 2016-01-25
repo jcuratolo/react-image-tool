@@ -32,7 +32,7 @@ export default class App extends Component {
         <Canvas
           imgPosition={this.state.position}
           imgSrc={this.state.imgSrc} />
-        <Footer imgPosition={this.state.position} />
+        <Footer imgPosition={this.state.position} imgSrc={this.state.imgSrc}/>
       </div>
     );
   }
