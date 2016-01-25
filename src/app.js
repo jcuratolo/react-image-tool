@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import store from './store.js';
 import Tools from './tools.js';
 import Canvas from './canvas.js';
+import Footer from './footer.js';
 
 var appStyle = {
   width: '640px',
@@ -25,12 +26,13 @@ export default class App extends Component {
   render() {
     return (
       <div style={appStyle}>
-        <Tools 
-          imagePosition={this.state.position}
+        <Tools
+          imgPosition={this.state.position}
           imgSrc={this.state.imgSrc} />
         <Canvas
-          imagePosition={this.state.position}
+          imgPosition={this.state.position}
           imgSrc={this.state.imgSrc} />
+        <Footer imgPosition={this.state.position} />
       </div>
     );
   }

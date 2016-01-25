@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
-
+import actionTypes from './actionTypes.js';
+const at = actionTypes;
 const initialState = {
   imgSrc: 'http://icons.iconarchive.com/icons/kyo-tux/aeon/256/Sign-LogOff-icon.png',
   position: {
@@ -12,11 +13,11 @@ const store = (state, action) => {
   state = state || initialState;
   console.log(action);
   switch (action.type) {
-    case 'UPDATE_POSITION':
+    case at.UPDATE_POSITION:
       return Object.assign({}, state, {
         position: action.position
       });
-    case 'UPDATE_IMG_SRC':
+    case at.UPDATE_IMG_SRC:
       return Object.assign({}, state, {
         imgSrc: action.src
       });

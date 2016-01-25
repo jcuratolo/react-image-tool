@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import store from './store.js';
+import actions from './actions.js';
 
 const toolsStyle = {
   borderBottom: '1px solid black'
@@ -15,6 +16,7 @@ const inputStyle = {
 
 
 export default class Tools extends Component {
+  // Used to copy generated HTML to clipboard
   handleCopyClick() {
     try {
       document.getElementById('htmlInput').select();
@@ -23,30 +25,29 @@ export default class Tools extends Component {
       console.error('Sorry, unable to copy in your browser.');
     }
   }
-  buildImgHtml(imagePosition) {
-    const left = imagePosition.left;
-    const top = imagePosition.top;
 
+  // Used to generate the correct html
+  buildImgHtml(imgPosition, imgSrc) {
+    const { left, top } = imgPosition;
     return (
-      `<img style="position: absolute; left: ${left}px; top: ${top}px;">`
+      `<img src="${imgSrc} style="position: relative; left: ${left}px; top: ${top}px;">`
     );
   }
 
+  // Used to clear the image src input field
   handleClearImgSrcClick() {
-    store.dispatch({
-      type: 'UPDATE_IMG_SRC',
-      src: ''
-    });
+    actions.UPDATE_IMG_SRC('');
+    document.getElementById('imgSrcInput').select();
   }
+
+  // Used to handle changes to the image src input field
   onImgSrcInputChange(ev) {
-    const imgSrc = this.refs.imgSrc;
-    store.dispatch({
-      type: 'UPDATE_IMG_SRC',
-      src: imgSrc.value
-    });
+    const { imgSrc } = this.refs;
+    actions.UPDATE_IMG_SRC(imgSrc.value);
   }
+
   render() {
-    const { imagePosition, imgSrc } = this.props;
+    const { imgPosition, imgSrc } = this.props;
     return (
       <div style={toolsStyle}>
         <div style={controlsStyle}>
@@ -66,7 +67,7 @@ export default class Tools extends Component {
             type="text"
             id="htmlInput"
             readOnly
-            value={this.buildImgHtml(imagePosition)}
+            value={this.buildImgHtml(imgPosition, imgSrc)}
             style={inputStyle} />
           <button onClick={this.handleCopyClick.bind(this)}>
             Copy

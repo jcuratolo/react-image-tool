@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 
 export default class Footer extends Component {
   render() {
-    console.log('footer rendering');
+    const { left, top } = this.props.imgPosition;
     return (
-      <h1>Footer</h1>
-    )
+      <div>
+        <h3 style={{float: 'left'}}>Left: {left}</h3>
+        <h3 style={{float: 'left', marginLeft: 10}}>Top: {top}</h3>
+      </div>
+      )
   }
 }

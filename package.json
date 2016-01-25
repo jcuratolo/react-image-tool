@@ -6,7 +6,6 @@
     "test": "mocha --compilers js:babel-core",
     "build": "browserify src/index.js --outfile public/bundle.js -d -v -t [ babelify --presets [ es2015 react ] ]",
     "build-watch": "watchify src/index.js --outfile public/bundle.js -d -v -t [ babelify --presets [ es2015 react ] ]",
-    "run-watch": "nodemon public/bundle.js",
     "live-reload": "live-reload --port 9091 public/",
     "www": "http-server -p 9090 public/",
     "start": "npm run build-watch & npm run live-reload & npm run www"
