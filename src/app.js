@@ -25,8 +25,12 @@ export default class App extends Component {
   render() {
     return (
       <div style={appStyle}>
-        <Tools imagePosition={this.state.position} />
-        <Canvas imagePosition={this.state.position} imgSrc={this.state.imgSrc}/>
+        <Tools 
+          imagePosition={this.state.position}
+          imgSrc={this.state.imgSrc} />
+        <Canvas
+          imagePosition={this.state.position}
+          imgSrc={this.state.imgSrc} />
       </div>
     );
   }

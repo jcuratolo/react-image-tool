@@ -30,8 +30,8 @@ export default class Canvas extends Component {
         <Draggable
           bounds="parent"
           onStop={this.handleStop.bind(this)}>
-          <div style={{border: '1px solid red', display: 'inline-block'}}>
-            <img src={this.props.imgSrc} style={{height: '64px', width: '64px', pointerEvents: 'none'}}/>
+          <div style={{display: 'inline-block'}}>
+            <img src={this.props.imgSrc} style={{pointerEvents: 'none'}}/>
           </div>
         </Draggable>
       </div>

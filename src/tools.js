@@ -31,16 +31,36 @@ export default class Tools extends Component {
       `<img style="position: absolute; left: ${left}px; top: ${top}px;">`
     );
   }
-  render() {
-    const imagePosition = this.props.imagePosition;
 
+  handleClearImgSrcClick() {
+    store.dispatch({
+      type: 'UPDATE_IMG_SRC',
+      src: ''
+    });
+  }
+  onImgSrcInputChange(ev) {
+    const imgSrc = this.refs.imgSrc;
+    store.dispatch({
+      type: 'UPDATE_IMG_SRC',
+      src: imgSrc.value
+    });
+  }
+  render() {
+    const { imagePosition, imgSrc } = this.props;
     return (
       <div style={toolsStyle}>
         <div style={controlsStyle}>
           <input
             type="text"
             placeholder="Enter the src attribute of your image"
+            ref="imgSrc"
+            onChange={this.onImgSrcInputChange.bind(this)}
+            value={imgSrc}
+            id="imgSrcInput"
             style={inputStyle} />
+          <button onClick={this.handleClearImgSrcClick.bind(this)}>
+          Clear
+          </button>
           <br/>
           <input
             type="text"
@@ -48,7 +68,9 @@ export default class Tools extends Component {
             readOnly
             value={this.buildImgHtml(imagePosition)}
             style={inputStyle} />
-          <button onClick={this.handleCopyClick.bind(this)}>Copy</button>
+          <button onClick={this.handleCopyClick.bind(this)}>
+            Copy
+          </button>
         </div>
       </div>
     )
