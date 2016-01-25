@@ -30,7 +30,7 @@ export default class App extends Component {
     return (
       <div style={appStyle}>
         <Tools imagePosition={this.state.position} />
-        <Canvas />
+        <Canvas imagePosition={this.state.position}/>
       </div>
     );
   }

@@ -30,9 +30,16 @@ export default class Canvas extends Component {
   }
 
   render() {
+    const startPosition = {
+      x: this.props.imagePosition.left,
+      y: this.props.imagePosition.top
+    };
     return (
       <div style={canvasStyle}>
-        <Draggable bounds="parent" onStop={this.handleStop.bind(this)}>
+        <Draggable
+          bounds="parent"
+          start={startPosition}
+          onStop={this.handleStop.bind(this)}>
           <div style={squareStyle}></div>
         </Draggable>
       </div>

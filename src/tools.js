@@ -5,16 +5,19 @@ const controlStyle = {
   margin: '10px'
 };
 
-const headerStyle = {
-  // //minHeight: '100%',
-  // overflowY: 'hidden',
-  // //padding: '10px',
-  // border: '1px solid black',
-  // width: '100%'
+const inputStyle = {
+  width: '50%'
 };
 
 export default class Tools extends Component {
-  handleClick() {}
+  handleClick() {
+    try {
+      document.getElementById('htmlInput').select();
+      document.execCommand('copy');
+    } catch (er) {
+      console.error('Sorry, unable to copy in your browser.');
+    }
+  }
   buildImgHtml(imagePosition) {
     const left = imagePosition.left;
     const top = imagePosition.top;
@@ -28,12 +31,14 @@ export default class Tools extends Component {
     const imagePosition = this.props.imagePosition;
 
     return (
-      <div style={headerStyle}>
+      <div>
         <div style={controlStyle}>
           <input
             type="text"
+            id="htmlInput"
             readOnly
-            value={this.buildImgHtml(imagePosition)} />
+            value={this.buildImgHtml(imagePosition)}
+            style={inputStyle} />
           <button onClick={this.handleClick.bind(this)}>Copy</button>
         </div>
       </div>
